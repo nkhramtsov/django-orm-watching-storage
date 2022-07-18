@@ -24,6 +24,6 @@ def storage_information_view(request):
         get_visit_dict(visit) for visit in Visit.objects.filter(leaved_at=None)
     ]
     context = {
-        'non_closed_visits': non_closed_visits,  # не закрытые посещения
+        'non_closed_visits': non_closed_visits,
     }
     return render(request, 'storage_information.html', context)
