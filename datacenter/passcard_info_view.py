@@ -4,19 +4,15 @@ from django.shortcuts import render, get_object_or_404
 from utils import format_duration
 
 
-def get_visit_dict(visit):
-    return {
-        'entered_at': visit.entered_at,
-        'duration': format_duration(visit.get_duration()),
-        'is_strange': visit.is_visit_long()
-    }
-
-
 def passcard_info_view(request, passcode):
     passcard = get_object_or_404(Passcard, passcode=passcode)
 
     this_passcard_visits = [
-        get_visit_dict(visit) for visit in Visit.objects.filter(passcard=passcard)
+        {
+            'entered_at': visit.entered_at,
+            'duration': format_duration(visit.get_duration()),
+            'is_strange': visit.is_visit_long()
+        } for visit in Visit.objects.filter(passcard=passcard)
     ]
     context = {
         'passcard': passcard,
