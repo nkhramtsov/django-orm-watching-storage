@@ -20,7 +20,6 @@ def get_visit_dict(visit):
 
 def passcard_info_view(request, passcode):
     passcard = get_object_or_404(Passcard, passcode=passcode)
-    # Программируем здесь
 
     this_passcard_visits = [
         get_visit_dict(visit) for visit in Visit.objects.filter(passcard=passcard)

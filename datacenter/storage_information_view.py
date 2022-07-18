@@ -20,7 +20,6 @@ def get_visit_dict(visit):
 
 
 def storage_information_view(request):
-    # Программируем здесь
     non_closed_visits = [
         get_visit_dict(visit) for visit in Visit.objects.filter(leaved_at=None)
     ]
